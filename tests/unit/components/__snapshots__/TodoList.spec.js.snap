@@ -1,0 +1,26 @@
+// Vitest Snapshot v1
+
+exports[`TodoList.vue > should respect the snapshot 1`] = `
+<div
+  data-v-app=""
+>
+  
+  <div>
+    <input
+      type="checkbox"
+    />
+    <span>
+      test
+    </span>
+  </div>
+  <div>
+    <input
+      type="checkbox"
+    />
+    <span>
+      test2
+    </span>
+  </div>
+  
+</div>
+`;

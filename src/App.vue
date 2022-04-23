@@ -10,6 +10,8 @@
     <router-link to="/about">About</router-link>
     |
     <router-link to="/counter">Counter</router-link>
+    |
+    <router-link to="/todo-list">To-Do List</router-link>
   </p>
   <router-view></router-view>
 </template>
