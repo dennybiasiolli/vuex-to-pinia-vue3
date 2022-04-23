@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "name": "Todo Item 1",
+        "completed": false
+    },
+    {
+        "id": 2,
+        "name": "Todo Item 2",
+        "completed": true
+    },
+    {
+        "id": 3,
+        "name": "Todo Item 3",
+        "completed": false
+    }
+]

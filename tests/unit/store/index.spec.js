@@ -1,5 +1,6 @@
 import { describe, test, expect, vi } from 'vitest'
-import store, { defaultState, getters, mutations, actions } from '@/store'
+import store, { defaultState, getters, mutations, actions, modules } from '@/store'
+import todoModule from '@/store/modules/todo'
 
 describe('store', () => {
   describe('state', () => {
@@ -30,19 +31,26 @@ describe('store', () => {
 
   describe('actions', () => {
     test('incrementAsync should work as expected', () => {
-      vi.useFakeTimers();
+      vi.useFakeTimers()
       const context = { commit: vi.fn() }
       actions.incrementAsync(context)
       expect(context.commit).not.toHaveBeenCalled()
-      vi.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000)
       expect(context.commit).toHaveBeenCalledTimes(1)
       expect(context.commit).toHaveBeenCalledWith('increment')
-      vi.useRealTimers();
+      vi.useRealTimers()
+    })
+  })
+
+  describe('modules', () => {
+    test('should have expected modules', () => {
+      expect(Object.keys(modules)).toEqual(['todo'])
+      expect(modules.todo).toBe(todoModule)
     })
   })
 
   test('real store', () => {
-    vi.useFakeTimers();
+    vi.useFakeTimers()
     expect(store.state.count).toBe(0)
     expect(store.getters.isEven).toBe(true)
     store.commit('increment')
@@ -53,8 +61,8 @@ describe('store', () => {
     expect(store.getters.isEven).toBe(true)
     store.dispatch('incrementAsync')
     expect(store.state.count).toBe(2)
-    vi.advanceTimersByTime(1000);
+    vi.advanceTimersByTime(1000)
     expect(store.state.count).toBe(3)
-    vi.useRealTimers();
+    vi.useRealTimers()
   })
 })

@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import todo from './modules/todo'
 
 export const defaultState = {
   count: 0,
@@ -22,9 +23,14 @@ export const actions = {
   },
 }
 
+export const modules = {
+  todo,
+}
+
 export default createStore({
   state: () => ({ ...defaultState }),
   getters,
   mutations,
   actions,
+  modules,
 })
