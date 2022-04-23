@@ -1,0 +1,25 @@
+// Vitest Snapshot v1
+
+exports[`Counter.vue > should respect the snapshot 1`] = `
+<div
+  data-v-app=""
+>
+  
+  <div>
+     count is: 0
+  </div>
+  <div>
+    <span>
+       is even
+    </span>
+  </div>
+  <button>
+    increment sync
+  </button>
+     
+  <button>
+    increment async
+  </button>
+  
+</div>
+`;
