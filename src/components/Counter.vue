@@ -1,13 +1,15 @@
 <script setup>
-import { computed } from 'vue'
-import { useStore } from 'vuex'
+// import { computed } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useStore } from '@/stores/main'
+
 
 const store = useStore()
-const count = computed(() => store.state.count)
-const isEven = computed(() => store.getters.isEven)
-const isOdd = computed(() => store.getters.isOdd)
-const increment = () => store.commit('increment')
-const incrementAsync = () => store.dispatch('incrementAsync')
+// const count = computed(() => store.count)
+// const isEven = computed(() => store.isEven)
+// const isOdd = computed(() => store.isOdd)
+const { count, isEven, isOdd } = storeToRefs(store)
+const { increment, incrementAsync } = store
 </script>
 
 <template>
