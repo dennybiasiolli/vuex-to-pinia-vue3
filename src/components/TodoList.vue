@@ -1,11 +1,12 @@
 <script setup>
-import { computed } from 'vue'
-import { useStore } from 'vuex'
-import { GET_TODO_LIST } from '@/store/modules/todo-types'
+// import { computed } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useTodoStore } from '@/stores/todo'
 
-const store = useStore()
-const todoList = computed(() => store.state.todo.todoList)
-store.dispatch(`todo/${GET_TODO_LIST}`)
+const todoStore = useTodoStore()
+// const todoList = computed(() => todoStore.todoList)
+const { todoList } = storeToRefs(todoStore)
+todoStore.getTodoList()
 </script>
 
 <template>
