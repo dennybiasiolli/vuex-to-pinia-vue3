@@ -9,9 +9,7 @@ exports[`Counter.vue > should respect the snapshot 1`] = `
      count is: 0
   </div>
   <div>
-    <span>
-       is even
-    </span>
+     isEven is: true | isOdd is: false
   </div>
   <button>
     increment sync

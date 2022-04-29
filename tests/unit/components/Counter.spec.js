@@ -18,6 +18,7 @@ describe('Counter.vue', () => {
       }),
       getters: {
         isEven: () => true,
+        isOdd: () => false,
       },
       mutations,
       actions,

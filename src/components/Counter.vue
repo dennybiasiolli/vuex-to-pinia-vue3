@@ -5,6 +5,7 @@ import { useStore } from 'vuex'
 const store = useStore()
 const count = computed(() => store.state.count)
 const isEven = computed(() => store.getters.isEven)
+const isOdd = computed(() => store.getters.isOdd)
 const increment = () => store.commit('increment')
 const incrementAsync = () => store.dispatch('incrementAsync')
 </script>
@@ -14,8 +15,9 @@ const incrementAsync = () => store.dispatch('incrementAsync')
     count is: {{ count }}
   </div>
   <div>
-    <span v-if="isEven">&nbsp;is even</span>
-    <span v-else>&nbsp;is odd</span>
+    isEven is: {{ isEven }}
+    |
+    isOdd is: {{ isOdd }}
   </div>
   <button @click="increment">increment sync</button>
   &nbsp;

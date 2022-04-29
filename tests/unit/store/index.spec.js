@@ -17,6 +17,11 @@ describe('store', () => {
       expect(getters.isEven({ count: 1 })).toBe(false)
       expect(getters.isEven({ count: 2 })).toBe(true)
     })
+
+    test('isOdd should work as expected', () => {
+      expect(getters.isOdd(undefined, { isEven: true })).toBe(false)
+      expect(getters.isOdd(undefined, { isEven: false })).toBe(true)
+    })
   })
 
   describe('mutations', () => {

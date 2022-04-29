@@ -7,6 +7,7 @@ export const defaultState = {
 
 export const getters = {
   isEven: state => state.count % 2 === 0,
+  isOdd: (_, getters) => !getters.isEven,
 }
 
 export const mutations = {
