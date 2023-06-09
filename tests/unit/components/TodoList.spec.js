@@ -1,34 +1,36 @@
+import { createTestingPinia } from '@pinia/testing'
 import { describe, test, beforeEach, expect, vi } from 'vitest'
-import { createStore } from 'vuex'
 import { shallowMount } from '@vue/test-utils';
 import TodoList from '@/components/TodoList.vue'
-import { GET_TODO_LIST } from '@/store/modules/todo-types'
+import { useTodoStore } from '@/stores/todo'
 
 describe('TodoList.vue', () => {
-  let store;
-  let todoActions = {
-    [GET_TODO_LIST]: vi.fn(),
-  }
+  let pinia;
+  let todoStore;
   beforeEach(() => {
-    store = createStore({
-      modules: {
+    pinia = createTestingPinia({
+      /**
+       * using spy function from vitest when `globals: false` (default)
+       * to explicitly defining the `spy` function,
+       * set `globals: true` in `vite.config.js`, section `test`
+       */
+      createSpy: vi.fn,
+      initialState: {
         todo: {
-          namespaced: true,
-          state: () => ({
-            todoList: [
-              { id: 1, name: 'test', completed: true },
-              { id: 2, name: 'test2', completed: false },
-            ],
-            todoListLoading: false,
-            todoListLoadingError: null,
-          }),
-          actions: todoActions,
+          todoList: [
+            { id: 1, name: 'test', completed: true },
+            { id: 2, name: 'test2', completed: false },
+          ],
+          todoListLoading: false,
+          todoListLoadingError: null,
         },
       },
     })
+    todoStore = useTodoStore()
   })
   test('should respect the snapshot', () => {
-    const wrapper = shallowMount(TodoList, { global: { plugins: [store] } })
+    const wrapper = shallowMount(TodoList, { global: { plugins: [pinia] } })
     expect(wrapper.element).toMatchSnapshot()
+    expect(todoStore.getTodoList).toHaveBeenCalledWith()
   })
 })
